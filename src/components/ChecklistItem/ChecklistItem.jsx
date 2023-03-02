@@ -1,14 +1,39 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as Checkbox from '@radix-ui/react-checkbox';
-import { CheckIcon } from '@radix-ui/react-icons';
+import { CheckCircledIcon, CircleIcon } from '@radix-ui/react-icons';
 
 import { useProgressContext } from 'context';
 
-const Container = styled.div``;
-const Label = styled.label``;
+import { styles } from 'styles/constants';
+
+const Container = styled.div`
+  display: flex;
+  padding: 20px 10px;
+
+  button {
+    cursor: pointer;
+  }
+`;
+
+const Root = styled(Checkbox.Root)`
+  display: flex;
+  align-items: center;
+  background-color: ${styles.colors.white};
+  border: none;
+
+  > div {
+    display: flex;
+  }
+`;
+
+const Label = styled.label`
+  padding-left: 10px;
+  cursor: pointer;
+`;
 
 const ChecklistItem = ({ description, value, checked, name }) => {
+  console.log('value: ', value);
   const { items, updateItems } = useProgressContext();
 
   const handleCheck = (value) => {
@@ -27,13 +52,9 @@ const ChecklistItem = ({ description, value, checked, name }) => {
 
   return (
     <Container>
-      <Checkbox.Root id={description} checked={checked} onCheckedChange={handleCheck}>
-        <Checkbox.Indicator>
-          <CheckIcon />
-        </Checkbox.Indicator>
-        {value}
-        {checked}
-      </Checkbox.Root>
+      <Root id={description} checked={checked} onCheckedChange={handleCheck}>
+        <>{checked ? <CheckCircledIcon /> : <CircleIcon />}</>
+      </Root>
       <Label htmlFor={description}>{description}</Label>
     </Container>
   );

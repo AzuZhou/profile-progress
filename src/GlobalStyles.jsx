@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { styles } from 'styles/constants';
+
 const GlobalStyles = createGlobalStyle`
     *,
     *::before,
@@ -11,6 +13,8 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Source Sans Pro', sans-serif;
+        background-color: ${styles.colors.lightgrey};
+        color: ${styles.colors.black};
     }
 `;
 
