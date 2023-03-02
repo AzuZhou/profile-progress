@@ -9,7 +9,14 @@ import { styles } from 'styles/constants';
 
 const Container = styled.div`
   display: flex;
-  padding: 20px 10px;
+  padding: 20px 30px;
+
+  &:first-child {
+    padding-top: 40px;
+  }
+  &:last-child {
+    padding-bottom: 40px;
+  }
 
   button {
     cursor: pointer;

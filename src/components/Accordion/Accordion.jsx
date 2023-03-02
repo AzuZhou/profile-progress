@@ -1,14 +1,37 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { useProgressContext } from 'context';
-import { SquareIcon, CaretUpIcon, CaretDownIcon } from '@radix-ui/react-icons';
+import { SquareIcon, CaretDownIcon } from '@radix-ui/react-icons';
 
 import { styles } from 'styles/constants';
 
 import ChecklistItem from 'components/ChecklistItem';
 
+const slideDown = keyframes`
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+`;
+const slideUp = keyframes`
+from {
+  height: var(--radix-accordion-content-height);
+}
+to {
+  height: 0;
+}
+`;
+
 const Item = styled(AccordionPrimitive.Item)`
+  overflow: hidden;
+
+  &:focus-within {
+    position: relative;
+    z-index: 1;
+  }
+
   &:first-child {
     h3 > button:first-child {
       border-top-left-radius: ${styles.borderRadius.standard};
@@ -57,29 +80,56 @@ const Trigger = styled(AccordionPrimitive.Trigger)`
 
     &:last-child {
       color: ${styles.colors.darkgrey};
+
+      &:before {
+        content: 'Show';
+      }
+
+      svg {
+        transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
+      }
+    }
+  }
+
+  &[data-state='open'] {
+    > div:last-child {
+      &:before {
+        content: 'Hide';
+      }
+
+      svg {
+        transform: rotate(180deg);
+      }
     }
   }
 `;
 
 const Content = styled(AccordionPrimitive.Content)`
-  padding: ${styles.padding.mobile};
+  overflow: hidden;
+
+  &[data-state='open'] {
+    animation: ${slideDown} 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  }
+
+  &[data-state='closed'] {
+    animation: ${slideUp} 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  }
+`;
+
+const Header = styled(AccordionPrimitive.Header)`
+  display: flex;
 `;
 
 const Accordion = () => {
-  const [active, setActive] = useState(null);
   const { items } = useProgressContext();
 
   if (!items) return null;
 
-  const handleChange = (value) => {
-    setActive(value);
-  };
-
   return (
-    <Root type="single" collapsible onValueChange={handleChange} value={active}>
+    <Root type="single" collapsible>
       {items.map(({ name, tasks }) => (
         <Item key={name} value={name}>
-          <AccordionPrimitive.Header>
+          <Header>
             <Trigger>
               <div>
                 <SquareIcon />
@@ -87,20 +137,10 @@ const Accordion = () => {
               </div>
 
               <div>
-                {name === active ? (
-                  <>
-                    Hide
-                    <CaretUpIcon />
-                  </>
-                ) : (
-                  <>
-                    Show
-                    <CaretDownIcon />
-                  </>
-                )}
+                <CaretDownIcon />
               </div>
             </Trigger>
-          </AccordionPrimitive.Header>
+          </Header>
 
           <Content>
             {tasks.map((task) => (

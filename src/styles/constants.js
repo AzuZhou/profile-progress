@@ -4,11 +4,12 @@ const styles = {
     lightgrey: '#e7e7e7',
     darkgrey: 'silver',
     black: '#202020',
-    white: 'white'
+    white: 'white',
+    green: '#50C878'
   },
   borderRadius: {
     standard: '6px',
-    round: '25%'
+    round: '99999px'
   },
   padding: {
     mobile: '20px'

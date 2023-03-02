@@ -5,6 +5,7 @@ import { ProgressProvider } from 'context';
 import { styles } from 'styles/constants';
 
 import Accordion from 'components/Accordion';
+import Progress from 'components/Progress';
 
 const Container = styled.div`
   width: 100vw;
@@ -31,16 +32,12 @@ const Form = styled.form`
   }
 `;
 
-const Title = styled.h1`
-  margin-top: 40px;
-`;
-
 const App = () => {
   return (
     <ProgressProvider>
       <Container>
         <Form>
-          <Title>Lodgify Grouped Tasks</Title>
+          <Progress />
           <Accordion />
         </Form>
       </Container>
