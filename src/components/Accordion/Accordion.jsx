@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import { useProgressContext } from 'context';
 
-import Checklist from 'components/Checklist';
+import ChecklistItem from 'components/ChecklistItem';
 
 const Root = styled(AccordionPrimitive.Root)``;
 const Item = styled(AccordionPrimitive.Item)``;
@@ -10,7 +10,11 @@ const Trigger = styled(AccordionPrimitive.Trigger)``;
 const Header = styled(AccordionPrimitive.Header)``;
 const Content = styled(AccordionPrimitive.Content)``;
 
-const Accordion = ({ items }) => {
+const Accordion = () => {
+  const { items } = useProgressContext();
+
+  if (!items) return null;
+
   return (
     <Root type="single" collapsible>
       {items.map(({ name, tasks }) => (
@@ -19,21 +23,14 @@ const Accordion = ({ items }) => {
             <Trigger>{name}</Trigger>
           </Header>
           <Content>
-            <Checklist tasks={tasks} />
+            {tasks.map((task) => (
+              <ChecklistItem key={task.description} {...task} name={name} />
+            ))}
           </Content>
         </Item>
       ))}
     </Root>
   );
-};
-
-Accordion.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      tasks: PropTypes.arrayOf(PropTypes.shape(Checklist.propTypes.tasks))
-    })
-  )
 };
 
 export default Accordion;
