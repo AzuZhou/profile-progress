@@ -30,5 +30,6 @@ Lodgify FE Technical Challenge created with [Create React App](https://github.co
 
 I am only using the API provided to fetch the data. In a real project we would use an API to send/post the data when we submit the form. Also, if the fields were to be of another type of input, say text, we could check if they pass certain conditions and handle any errors that may arise from those.
 Between the steps, so these groups of checkboxes and some other step, depending on the degree of sensitivity of the data, we could save it in localStorage, so if they for some reason click off, they'll still have the current state of the form saved.
+Lastly, I would definitely add a loading spinner, at least for the submit.
 
 Thanks for reading!
