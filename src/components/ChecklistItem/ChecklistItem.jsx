@@ -28,6 +28,7 @@ const Root = styled(Checkbox.Root)`
   align-items: center;
   background-color: ${styles.colors.white};
   border: none;
+  color: ${({ checked }) => (checked ? styles.colors.green : styles.colors.black)};
 
   > div {
     display: flex;
@@ -40,7 +41,6 @@ const Label = styled.label`
 `;
 
 const ChecklistItem = ({ description, value, checked, name }) => {
-  console.log('value: ', value);
   const { items, updateItems } = useProgressContext();
 
   const handleCheck = (value) => {
@@ -59,8 +59,14 @@ const ChecklistItem = ({ description, value, checked, name }) => {
 
   return (
     <Container>
-      <Root id={description} name={description} checked={checked} onCheckedChange={handleCheck}>
-        <>{checked ? <CheckCircledIcon /> : <CircleIcon />}</>
+      <Root
+        id={description}
+        name={description}
+        value={value}
+        checked={checked}
+        onCheckedChange={handleCheck}
+      >
+        {checked ? <CheckCircledIcon /> : <CircleIcon />}
       </Root>
       <Label htmlFor={description}>{description}</Label>
     </Container>
