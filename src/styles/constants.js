@@ -24,7 +24,8 @@ const styles = {
     sourceSansPro: 'Source Sans Pro'
   },
   breakpoints: {
-    desktop: '@media only screen and (min-width: 1024px)'
+    desktop: '@media only screen and (min-width: 1024px)',
+    tablet: '@media only screen and (min-width: 768px)'
   }
 };
 

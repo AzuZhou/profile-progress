@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import { useProgressContext } from 'context';
 
-import { getProgress } from 'utils/helper';
-
 import { styles } from 'styles/constants';
 
 const Container = styled.div`
@@ -53,20 +51,19 @@ const Indicator = styled(ProgressPrimitive.Indicator)`
 `;
 
 const Progress = () => {
-  const { items } = useProgressContext();
+  const { items, progress } = useProgressContext();
 
   if (!items) return null;
-
-  const progress = getProgress(items);
-  console.log('progress: ', progress);
 
   return (
     <Container>
       <Title>Lodgify Grouped Tasks</Title>
 
-      <Root progress={progress} value={progress}>
-        <Indicator style={{ transform: `translateX(-${100 - progress}%)` }} />
-      </Root>
+      {progress && (
+        <Root progress={progress} value={progress}>
+          <Indicator style={{ transform: `translateX(-${100 - progress}%)` }} />
+        </Root>
+      )}
     </Container>
   );
 };

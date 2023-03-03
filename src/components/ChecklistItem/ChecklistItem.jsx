@@ -59,7 +59,7 @@ const ChecklistItem = ({ description, value, checked, name }) => {
 
   return (
     <Container>
-      <Root id={description} checked={checked} onCheckedChange={handleCheck}>
+      <Root id={description} name={description} checked={checked} onCheckedChange={handleCheck}>
         <>{checked ? <CheckCircledIcon /> : <CircleIcon />}</>
       </Root>
       <Label htmlFor={description}>{description}</Label>

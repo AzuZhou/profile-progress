@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useMemo, useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 
+import { getProgress } from 'utils/helper';
+
 const ProgressContext = createContext();
 
 const useProgressContext = () => {
-  const { items, updateItems } = useContext(ProgressContext);
-  return { items, updateItems };
+  const { items, updateItems, progress } = useContext(ProgressContext);
+  return { items, updateItems, progress };
 };
 
 const ProgressProvider = ({ children }) => {
@@ -15,6 +17,8 @@ const ProgressProvider = ({ children }) => {
   const updateItems = useCallback((value) => {
     setItems(value);
   }, []);
+
+  const progress = useMemo(() => getProgress(items), [items]);
 
   useEffect(() => {
     const getData = async () => {
@@ -29,7 +33,10 @@ const ProgressProvider = ({ children }) => {
     getData();
   }, []);
 
-  const contextValue = useMemo(() => ({ items, updateItems }), [items, updateItems]);
+  const contextValue = useMemo(
+    () => ({ items, updateItems, progress }),
+    [items, updateItems, progress]
+  );
 
   return <ProgressContext.Provider value={contextValue}>{children}</ProgressContext.Provider>;
 };

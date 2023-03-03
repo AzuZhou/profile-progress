@@ -1,4 +1,6 @@
 const getProgress = (items) => {
+  if (!items) return null;
+
   const tasks = items.flatMap((item) => item.tasks);
 
   const data = tasks.reduce(

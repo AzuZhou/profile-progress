@@ -4,11 +4,15 @@ import GlobalStyles from './GlobalStyles';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { ProgressProvider } from 'context';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyles />
-    <App />
+    <ProgressProvider>
+      <App />
+    </ProgressProvider>
   </React.StrictMode>
 );
 
