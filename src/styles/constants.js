@@ -5,21 +5,26 @@ const styles = {
     darkgrey: 'silver',
     black: '#202020',
     white: 'white',
-    green: '#50C878'
+    green: '#2AAA8A',
+    lightgreen: '#e9f6f3 '
   },
-  borderRadius: {
+  borderRadii: {
     standard: '6px',
     round: '99999px'
   },
-  padding: {
+  paddings: {
     mobile: '20px'
   },
   fontSizes: {
+    xs: '14px',
     s: '16px',
     m: '18px'
   },
   fontFamilies: {
     sourceSansPro: 'Source Sans Pro'
+  },
+  breakpoints: {
+    desktop: '@media only screen and (min-width: 1024px)'
   }
 };
 

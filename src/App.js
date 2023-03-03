@@ -20,14 +20,14 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   background-color: ${styles.colors.white};
-  padding: ${styles.padding.mobile};
-  margin: ${styles.padding.mobile};
-  border-radius: ${styles.borderRadius.standard};
+  padding: ${styles.paddings.mobile};
+  margin: ${styles.paddings.mobile};
+  border-radius: ${styles.borderRadii.standard};
   border: 1px solid ${styles.colors.grey};
   font-size: ${styles.fontSizes.s};
 
-  @media only screen and (min-width: 720px) {
-    max-width: 600px;
+  ${styles.breakpoints.desktop} {
+    max-width: 900px;
     margin: 0;
   }
 `;

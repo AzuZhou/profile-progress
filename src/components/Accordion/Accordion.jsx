@@ -34,21 +34,21 @@ const Item = styled(AccordionPrimitive.Item)`
 
   &:first-child {
     h3 > button:first-child {
-      border-top-left-radius: ${styles.borderRadius.standard};
-      border-top-right-radius: ${styles.borderRadius.standard};
+      border-top-left-radius: ${styles.borderRadii.standard};
+      border-top-right-radius: ${styles.borderRadii.standard};
     }
   }
   &:last-child {
     h3 > button:first-child {
-      border-bottom-left-radius: ${styles.borderRadius.standard};
-      border-bottom-right-radius: ${styles.borderRadius.standard};
+      border-bottom-left-radius: ${styles.borderRadii.standard};
+      border-bottom-right-radius: ${styles.borderRadii.standard};
     }
   }
 `;
 
 const Root = styled(AccordionPrimitive.Root)`
-  margin-top: ${styles.padding.mobile};
-  border-radius: ${styles.borderRadius.standard};
+  margin-top: ${styles.paddings.mobile};
+  border-radius: ${styles.borderRadii.standard};
   border: 1px solid ${styles.colors.grey};
 
   ${Item} ~ ${Item} {
